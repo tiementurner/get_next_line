@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 10:34:06 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/19 13:40:22 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 17:02:15 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static	char	*ft_merge(char *p, char const *s1, char const *s2)
 	return (p);
 }
 
-char			*ft_strjoin(char *s1, char const *s2)
+char			*ft_strjoin(char *s1, char *s2)
 {
 	char	*p;
 

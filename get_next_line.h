@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 15:42:20 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/19 14:30:22 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 13:11:12 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 10
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 int		ft_strchr(const char *s, int c);
 int		get_next_line(int fd, char **line);
-char	*ft_strjoin(char *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 
