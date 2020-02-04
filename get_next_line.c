@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/16 14:00:08 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/31 17:11:18 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/02/04 17:42:36 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*cut_to_newline(char *buffer, char *line)
 
 	i = 0;
 	line = (char *)malloc(sizeof(char) * ft_strlen(buffer));
-	while (buffer[i] != '\n')
+	while (buffer[i] != '\n' && buffer[i] != '\0')
 	{
 		line[i] = buffer[i];
 		i++;
@@ -27,7 +27,7 @@ static char	*cut_to_newline(char *buffer, char *line)
 	return (line);
 }
 
-static char *cut_from_newline(char *buffer)
+static char	*cut_from_newline(char *buffer)
 {
 	while (*buffer != '\n')
 		buffer++;
@@ -38,18 +38,23 @@ static char *cut_from_newline(char *buffer)
 static	int	buf_concatenate(int ret_val, char **buffer, int fd, char **line)
 {
 	char temp_buffer[BUFFER_SIZE + 1];
+	char *temp;
 
 	temp_buffer[ret_val] = '\0';
 	while (ret_val == BUFFER_SIZE && !(ft_strchr(*buffer, '\n')))
 	{
 		ret_val = read(fd, temp_buffer, BUFFER_SIZE);
 		temp_buffer[ret_val] = '\0';
-		*buffer = ft_strjoin(*buffer, temp_buffer);
-	}
+		temp = ft_strjoin(*buffer, temp_buffer);
+		free(*buffer);
+		*buffer = temp;
+	}//hier ben ik
 	if (ft_strchr(*buffer, '\n'))
 	{
 		*line = cut_to_newline(*buffer, *line);
-		*buffer = cut_from_newline(*buffer);
+		temp = cut_from_newline(*buffer);
+		free(*buffer);
+		*buffer = temp;
 		return (1);
 	}
 	*line = ft_strdup(*buffer);
